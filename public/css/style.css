@@ -5,9 +5,11 @@ body{
     background-color:#E8F6EF;
 }
 button {
-    margin:5px;
+    margin:10px;
 }
-
+form{
+    width:25%;
+}
 .monTableau{
     margin: 20px;
 }

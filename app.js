@@ -71,7 +71,7 @@ var Articledef1 = {
   libelle: "Tournevis",
   type: "outillage",
   dateCreation: "2016-04-26",
-  dateModification: "1972-08-15",
+  dateModification: "2018-08-15",
   numeroSerie: "1",
   aReparer: false,
   archiver: false,
@@ -102,13 +102,10 @@ app.get("/", function (req, res) {
 
 app.get("/modifier", function (req, res) {
   action = "Modifier";
-  var articlelibelle = req.query["articleLibelle"];
-  Article.findOne(
-    { libelle: articlelibelle },
-    function (err, articleSelectione) {
-      res.render("article", { article: articleSelectione, action: action });
-    }
-  );
+  var articleId = req.query["articleId"];
+  Article.findOne({ _id: articleId }, function (err, articleSelectione) {
+    res.render("article", { article: articleSelectione, action: action });
+  });
 });
 
 app.post("/ajouterArticle", function (req, res) {
@@ -145,7 +142,7 @@ app.post("/modifierArticle", function (req, res) {
   };
   console.log("Mon article :", articleAjouter);
   Article.findOneAndUpdate(
-    { libelle: req.body.libelle },
+    { _id: req.body._id },
     {
       libelle: req.body.libelle,
       type: req.body.type,
@@ -156,20 +153,20 @@ app.post("/modifierArticle", function (req, res) {
       archiver: req.body.archiver,
       supprimer: req.body.supprimer,
     },
-    function (err) {
+    function (err,found) {
       if (err) {
         console.log(err);
       } else {
-        console.log("L'article a bien ete mise a jour ");
+        console.log("L'article a bien ete mise a jour ",found);
       }
     }
   );
   res.redirect("/");
 });
 app.get("/supprimerArticle", function (req, res) {
-  var articlelibelle = req.query["articleLibelle"];
+  var articleId = req.query["articleId"];
   Article.findOneAndUpdate(
-    { libelle: articlelibelle },
+    { _id: articleId },
     { supprimer: true },
     function (err) {
       if (err) {
@@ -182,9 +179,9 @@ app.get("/supprimerArticle", function (req, res) {
   res.redirect("/");
 });
 app.get("/archiverArticle", function (req, res) {
-    var articlelibelle = req.query["articleLibelle"];
+    var articleId = req.query["articleId"];
     Article.findOneAndUpdate(
-      { libelle: articlelibelle },
+      { _id: articleId },
       { archiver: true },
       function (err) {
         if (err) {
