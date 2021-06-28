@@ -1,0 +1,57 @@
+<% if(action ==="Ajouter"){ %> 
+<form action="/ajouterArticle" method="POST">
+    <% }else{ %>
+     
+        <%- include("header") -%>
+        
+                <div class="header">
+                    <h1>Mon Gestionaire d'articles</h1>
+                </div>
+
+        <form action="/modifierArticle" method="POST">
+        <% } %>  
+    <div>
+        <label for="libelle">Libelle: </label>
+        <input type="text" name="libelle" value="<%= article.libelle %>" required>
+    </div>
+    <div>
+        <label for="type">Type: </label>
+        <select name="type" id="type" required >
+            <option value="<%= article.type%>">Choisir un type</option>
+            <option value="consommable">Consommable</option>
+            <option value="outillage">Outillage</option>
+        </select>
+    </div>
+    <div>
+        <label for="numeroSerie">Numéro de série: </label>
+        <input type="text" name="numeroSerie" value="<%= article.numeroSerie %>" required>
+    </div>
+    <div>
+        <label for="dateCreation">Date de Creation:</label>
+        <input type="date"  name="dateCreation"  id="dateCreation" value="<%= article.dateCreation%>" min="2018-01-01" max="2018-12-31" required>
+    </div> 
+    <div>
+        <label for="dateModification">Date de Modification:</label>
+        <input type="date" name="dateModification" id="dateModification" value="<%= article.dateModifictaion %>" min="2018-01-01" max="2018-12-31">
+    </div>
+
+    <div>
+        <label for="etat">Etat: </label>
+        <select name="etat" id="etat" required>
+            <option value="<%= article.aReparer%>">Choisir un etat</option>
+            <option value="false">Bon état</option>
+            <option value="true">A reparer</option>
+        </select>
+    </div>
+
+    <div>
+    <input name="archiver" type="hidden" value="<%= article.archiver%>">
+    <input name="supprimer" type="hidden" value="<%= article.supprimer %>">
+    </div>
+    <div>
+        <button type="button"  class="btn btn-danger" onclick="location.href='/'" value="">Anuller</button>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-success" value=""><%= action %></button>
+    </div>
+</form>

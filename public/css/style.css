@@ -1,0 +1,21 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    padding: 50px;
+    margin: 20px;
+    background-color:#E8F6EF;
+}
+button {
+    margin:5px;
+}
+
+.monTableau{
+    margin: 20px;
+}
+.header{
+    background-color:#FFE194;
+    text-align: center;
+    margin: 40px 0px;
+}
+.monTableau{
+    margin: 60px 0px;
+}

@@ -1,0 +1,37 @@
+<table id="tableau" class="display">
+    <thead>
+        <tr>
+            <th>Libelle</th>
+            <th>Type</th>
+            <th>Numero de serie</th>
+            <th>Date de création</th>
+            <th>Date de modification</th>
+            <th>Etat</th>
+            <th>Modifier</th>
+            <th>Archiver</th>
+            <th>Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% ListeArticles.forEach(article=> { %> 
+            <% if(article.archiver===false){ %> 
+        <tr>
+            <td><%=article.libelle%></td>
+            <td><%=article.type%></td>
+            <td><%=article.numeroSerie%></td>
+            <td><%=article.dateCreation%></td>
+            <td><%=article.dateModification%></td>
+        <% if (article.aReparer==true ) { %>
+                    <td>A reparer</td>
+        <% } else { %>
+            <td>Bon état</td>
+            <% }; %>
+            <td><a href="/modifier?articleLibelle=<%= article.libelle %> "><img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v2.png" /></a></td>
+            <td><a href="/archiverArticle?articleLibelle=<%= article.libelle %> "><img src="https://img.icons8.com/ios-glyphs/30/000000/winrar.png" /></a></td>
+            <td><a href="/supprimerArticle?articleLibelle=<%= article.libelle %> "><img src="https://img.icons8.com/ios-glyphs/30/000000/delete.png" /></a></td>
+        </tr>
+        <% } %> 
+        <% }); %> 
+    </tbody>
+</table>
+
