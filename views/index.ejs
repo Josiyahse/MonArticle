@@ -3,13 +3,19 @@
 <%- include("header") -%>
 <body>
     <div class="header">
-        <h1>Mon Gestionaire d'articles</h1>
+        <!-- As a heading -->
+        <nav class="navbar navbar-light header">
+            <div class="container-fluid">
+                <h1 class=" mb-0 h1">Gestionaire d'article</h1>
+            </div>
+        </nav>
     </div>
-    <div class="monArticle">
-        <%- include("article") -%>
-    </div>
-    <div class="monTableau">
+    <div class="monTableau contener">
         <%- include("table") -%>
     </div>
+    <div class="monArticle contener">
+        <%- include("article") -%>
+    </div>
+
 </body>
 </html>

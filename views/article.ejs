@@ -1,13 +1,24 @@
+
 <% if(action ==="Ajouter"){ %> 
+<h2> <%= action %> un articles</h2>
+<div>
 <form action="/ajouterArticle" method="POST">
     <% }else{ %>
      
         <%- include("header") -%>
         
-                <div class="header">
-                    <h1>Mon Gestionaire d'articles</h1>
-                </div>
-
+            <div class="header">
+                <!-- As a heading -->
+                <nav class="navbar navbar-light header">
+                    <div class="container-fluid">
+                        <h1 class=" mb-0 h1">Gestionaire d'article</h1>
+                    </div>
+                </nav>
+            </div>
+        <div class="monArticle contener">
+<h2>
+    <%= action %> l' articles <%= article.libelle %>
+</h2>
         <form action="/modifierArticle" method="POST">
         <% } %>  
     <div>
@@ -49,10 +60,11 @@
     <input name="supprimer" type="hidden" value="<%= article.supprimer %>">
     <input name="_id" type="hidden" value="<%= article._id %>">
     </div>
-    <div>
-        <button type="button"  class="btn btn-danger" onclick="location.href='/'" value="">Anuller</button>
+    <div class="action1">
+        <button type="button"  class="btn btn-danger " onclick="location.href='/'" value="">Annuller</button>
     </div>
-    <div>
-        <button type="submit" class="btn btn-success" value=""><%= action %></button>
+    <div class="action2">
+        <button type="submit" class="btn btn-success " value=""><%= action %></button>
     </div>
 </form>
+</div>
