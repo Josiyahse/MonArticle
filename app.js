@@ -194,6 +194,11 @@ app.get("/archiverArticle", function (req, res) {
     res.redirect("/");
 });
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
 app.listen(port, function () {
-  console.log("Server started at port : " + port + " with success");
+  console.log("Server started on port 3000");
 });
