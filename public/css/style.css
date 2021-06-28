@@ -1,0 +1,36 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color:#fff;
+    color: #242424;
+}
+h1{
+    text-align:center;
+    position: relative;
+    left: 20px;
+}
+button {
+    margin:10px;
+}
+form{
+    width:20rem;
+}
+.monTableau{
+    margin: 20px;
+}
+.header{
+    background-color:#ee591f;
+    text-align: center;
+}
+.table{
+    text-align:center;
+}
+
+.contener{
+    margin: 30px;
+}
+.action1{
+    display:inline-block;
+}
+.action2{
+    display:inline-block;
+}
