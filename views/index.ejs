@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="fr">
 <%- include("header") -%>
+
 <body>
-    <div class="header">
+    <div
+        class="header">
         <!-- As a heading -->
-        <nav class="navbar navbar-light header">
+        <nav class="header">
             <div class="container-fluid">
-                <h1 class=" mb-0 h1">Gestionaire d'article</h1>
+                <h1>Gestionaire d'article</h1>
             </div>
         </nav>
     </div>
-    <div class="monTableau contener">
+    <div>
         <%- include("table") -%>
+        <button type="button" class="btn btn-danger " onclick="location.href='/ajouter'" value="">Ajouter</button>
     </div>
-    <div class="monArticle contener">
-        <%- include("article") -%>
-    </div>
-
-</body>
-</html>
+</div>

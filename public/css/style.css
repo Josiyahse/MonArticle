@@ -2,6 +2,8 @@ body{
     font-family: 'Montserrat', sans-serif;
     background-color:#fff;
     color: #242424;
+    margin: 60px;
+
 }
 h1{
     text-align:center;
@@ -14,23 +16,26 @@ button {
 form{
     width:20rem;
 }
-.monTableau{
-    margin: 20px;
-}
+
 .header{
-    background-color:#ee591f;
-    text-align: center;
+    color:#ee591f;
+    font-size:50px;
+    font-weight:bold;
 }
 .table{
     text-align:center;
 }
-
-.contener{
-    margin: 30px;
+.colorhead{
+   color: #ee591f
 }
+
 .action1{
     display:inline-block;
 }
 .action2{
     display:inline-block;
+}
+.centre{
+display: inline-block;
+  
 }

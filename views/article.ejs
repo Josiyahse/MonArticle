@@ -1,70 +1,99 @@
+<% if(action==="Ajouter" ){ %>
+    <%- include("header") -%>
+    <div
+        class="header">
 
-<% if(action ==="Ajouter"){ %> 
-<h2> <%= action %> un articles</h2>
-<div>
-<form action="/ajouterArticle" method="POST">
-    <% }else{ %>
-     
-        <%- include("header") -%>
-        
-            <div class="header">
+        <!-- As a heading -->
+        <nav class="navbar-light header">
+            <div class="container-fluid">
+                <h1 class="mb-0 h1">Gestionaire d'article</h1>
+            </div>
+        </nav>
+    </div>
+    <h2 class="colorhead">
+        <%= action %>
+        un articles
+    </h2>
+    <div>
+        <form action="/ajouterArticle" method="POST">
+        <% }else{ %>
+            <%- include("header") -%>
+
+            <div
+                class="header">
                 <!-- As a heading -->
-                <nav class="navbar navbar-light header">
+                <nav class="navbar-light header">
                     <div class="container-fluid">
-                        <h1 class=" mb-0 h1">Gestionaire d'article</h1>
+                        <h1 class="mb-0 h1">Gestionaire d'article</h1>
                     </div>
                 </nav>
             </div>
-        <div class="monArticle contener">
-<h2>
-    <%= action %> l' articles <%= article.libelle %>
-</h2>
-        <form action="/modifierArticle" method="POST">
-        <% } %>  
-    <div>
-        <label for="libelle">Libelle: </label>
-        <input type="text" class="form-control" name="libelle" value="<%= article.libelle %>" required>
-    </div>
-    <div>
-        <label for="type">Type: </label>
-        <select class="form-select" name="type" id="type" required >
-            <option value="<%= article.type%>">Choisir un type</option>
-            <option value="consommable">Consommable</option>
-            <option value="outillage">Outillage</option>
-        </select>
-    </div>
-    <div>
-        <label for="numeroSerie">Numéro de série: </label>
-        <input type="text" class="form-control" name="numeroSerie" value="<%= article.numeroSerie %>" required>
-    </div>
-    <div>
-        <label for="dateCreation">Date de Creation:</label>
-        <input type="date" class="form-control" name="dateCreation"  id="dateCreation" value="<%= article.dateCreation%>" min="2018-01-01" max="2021-12-31" required>
-    </div> 
-    <div>
-        <label for="dateModification">Date de Modification:</label>
-        <input type="date" class="form-control" name="dateModification" id="dateModification" value="<%= article.dateModification %>" min="2018-01-01" max="2021-12-31">
-    </div>
+            <div class="monArticle contener">
+                <h2 class="colorhead">
+                    <%= action %>
+                    l' articles
+                    <%= article.libelle %>
+                </h2>
+                <form action="/modifierArticle" method="POST">
+                <% } %>
 
-    <div>
-        <label for="etat">Etat: </label>
-        <select class="form-select" name="etat" id="etat" required>
-            <option value="<%= article.aReparer%>">Choisir un etat</option>
-            <option value="false">Bon état</option>
-            <option value="true">A reparer</option>
-        </select>
-    </div>
+                <!-- div du contenaire de formulaire -->
+                <div class="centre">
+                    <div>
+                        <label for="libelle">Libelle:
+                        </label>
+                        <input type="text" class="form-control" name="libelle" value="<%= article.libelle %>" required="required"/>
+                    </div>
+                    <div>
+                        <label for="type">Type:
+                        </label>
+                        <select class="form-select" name="type" id="type" required="required">
+                            <option value="<%= article.type%>">Choisir un type</option>
+                            <option value="consommable">Consommable</option>
+                            <option value="outillage">Outillage</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="numeroSerie">Numéro de série:
+                        </label>
+                        <input type="text" class="form-control" name="numeroSerie" value="<%= article.numeroSerie %>" required="required"/>
+                    </div>
+                    <div>
+                        <label for="dateCreation">Date de Creation:</label>
+                        <input type="date" class="form-control" name="dateCreation" id="dateCreation" value="<%= article.dateCreation%>" min="2018-01-01" max="2021-12-31" required="required"/>
+                    </div>
+                    <div>
+                        <label for="dateModification">Date de Modification:</label>
+                        <input type="date" class="form-control" name="dateModification" id="dateModification" value="<%= article.dateModification %>" min="2018-01-01" max="2021-12-31"/>
+                    </div>
 
-    <div>
-    <input name="archiver" type="hidden" value="<%= article.archiver%>">
-    <input name="supprimer" type="hidden" value="<%= article.supprimer %>">
-    <input name="_id" type="hidden" value="<%= article._id %>">
-    </div>
-    <div class="action1">
-        <button type="button"  class="btn btn-danger " onclick="location.href='/'" value="">Annuller</button>
-    </div>
-    <div class="action2">
-        <button type="submit" class="btn btn-success " value=""><%= action %></button>
-    </div>
-</form>
+                    <div>
+                        <label for="etat">Etat:
+                        </label>
+                        <select class="form-select" name="etat" id="etat" required="required">
+                            <option value="<%= article.aReparer%>">Choisir un etat</option>
+                            <option value="false">Bon état</option>
+                            <option value="true">A reparer</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <input name="archiver" type="hidden" value="<%= article.archiver%>"/>
+                        <input name="supprimer" type="hidden" value="<%= article.supprimer %>"/>
+                        <input name="_id" type="hidden" value="<%= article._id %>"/>
+                    </div>
+                    <div class="action1">
+                        <button type="button" class="btn btn-danger" onclick="location.href='/'" value="">
+                            Annuller
+                        </button>
+                    </div>
+                    <div class="action2">
+                        <button type="submit" class="btn btn-success" value="">
+                            <%= action %>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </form>
 </div>

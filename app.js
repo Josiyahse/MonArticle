@@ -1,9 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const { request } = require("http");
 const app = express();
-
 
 app.set("view engine", "ejs");
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -77,25 +75,19 @@ var Articledef1 = {
 };
 
 app.get("/", function (req, res) {
-  action = "Ajouter";
-  Article.find(
-    {},
-    function (err, foundArticleListe) {
-      if (foundArticleListe.length === 0) {
-        Article.create(Articledef1, function (err) {
-          if (err) {
-            consol.log(err);
-          }
-        });
-      } else {
-        res.render("index", {
-          ListeArticles: foundArticleListe,
-          article: articleDefaut,
-          action: action,
-        });
-      }
+  Article.find({}, function (err, foundArticleListe) {
+    if (foundArticleListe.length === 0) {
+      Article.create(Articledef1, function (err) {
+        if (err) {
+          consol.log(err);
+        }
+      });
+    } else {
+      res.render("index", {
+        ListeArticles: foundArticleListe,
+      });
     }
-  );
+  });
 });
 
 app.get("/modifier", function (req, res) {
@@ -104,6 +96,11 @@ app.get("/modifier", function (req, res) {
   Article.findOne({ _id: articleId }, function (err, articleSelectione) {
     res.render("article", { article: articleSelectione, action: action });
   });
+});
+
+app.get("/ajouter", function (req, res) {
+  action = "Ajouter";
+  res.render("article", { action: action, article: articleDefaut });
 });
 
 app.post("/ajouterArticle", function (req, res) {
@@ -127,18 +124,8 @@ app.post("/ajouterArticle", function (req, res) {
   });
   res.redirect("/");
 });
+
 app.post("/modifierArticle", function (req, res) {
-  let articleAjouter = {
-    libelle: req.body.libelle,
-    type: req.body.type,
-    dateCreation: req.body.dateCreation,
-    dateModificationn: req.body.dateModification,
-    numeroSerie: req.body.numeroSerie,
-    aReparer: req.body.etat,
-    archiver: req.body.archiver,
-    supprimer: req.body.supprimer,
-  };
-  console.log("Mon article :", articleAjouter);
   Article.findOneAndUpdate(
     { _id: req.body._id },
     {
@@ -151,16 +138,17 @@ app.post("/modifierArticle", function (req, res) {
       archiver: req.body.archiver,
       supprimer: req.body.supprimer,
     },
-    function (err,found) {
+    function (err, found) {
       if (err) {
         console.log(err);
       } else {
-        console.log("L'article a bien ete mise a jour ",found);
+        console.log("L'article a bien ete mise a jour ", found);
       }
     }
   );
   res.redirect("/");
 });
+
 app.get("/supprimerArticle", function (req, res) {
   var articleId = req.query["articleId"];
   Article.findOneAndUpdate(
@@ -176,20 +164,21 @@ app.get("/supprimerArticle", function (req, res) {
   );
   res.redirect("/");
 });
+
 app.get("/archiverArticle", function (req, res) {
-    var articleId = req.query["articleId"];
-    Article.findOneAndUpdate(
-      { _id: articleId },
-      { archiver: true },
-      function (err) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("L'article a bien ete archiver ");
-        }
+  var articleId = req.query["articleId"];
+  Article.findOneAndUpdate(
+    { _id: articleId },
+    { archiver: true },
+    function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("L'article a bien ete archiver ");
       }
-    );
-    res.redirect("/");
+    }
+  );
+  res.redirect("/");
 });
 
 let port = process.env.PORT;
